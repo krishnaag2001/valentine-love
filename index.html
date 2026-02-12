@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Krishna ❤️ Aneeshmenon</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #ffc0cb, #ff6b81);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+      text-align: center;
+      color: #fff;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.15);
+      padding: 30px;
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      max-width: 350px;
+    }
+
+    button {
+      margin: 10px;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .yes {
+      background: #ff4d6d;
+      color: white;
+    }
+
+    .no {
+      background: #eee;
+      color: black;
+      position: relative;
+    }
+
+    .heart {
+      position: absolute;
+      font-size: 20px;
+      animation: float 6s linear infinite;
+      opacity: 0.7;
+    }
+
+    @keyframes float {
+      from { transform: translateY(100vh); }
+      to { transform: translateY(-10vh); }
+    }
+  </style>
+</head>
+
+<body>
+
+<audio autoplay loop>
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3?filename=romantic-love-11725.mp3" type="audio/mp3">
+</audio>
+
+<div class="card">
+  <h2 id="text">Hi Aneeshmenon 💌</h2>
+
+  <div id="buttons" style="display:none;">
+    <button class="yes" onclick="sayYes()">YES 💞</button>
+    <button class="no" onmouseover="moveNo()" id="noBtn">No 🙈</button>
+  </div>
+
+  <button onclick="next()" id="nextBtn">Next 💘</button>
+</div>
+
+<script>
+  const messages = [
+    "Hi Aneeshmenon 💌",
+    "I made this little website just for you...",
+    "Because you are the most special person in my life 💖",
+    "Every moment with you feels like a beautiful dream ✨",
+    "Thank you for loving me and caring for me 💕",
+    "I love you more than words can explain ❤️",
+    "Will you be my Valentine forever? 💍"
+  ];
+
+  let i = 0;
+
+  function next() {
+    i++;
+    document.getElementById("text").innerText = messages[i];
+
+    if (i === messages.length - 1) {
+      document.getElementById("nextBtn").style.display = "none";
+      document.getElementById("buttons").style.display = "block";
+    }
+  }
+
+  function moveNo() {
+    const btn = document.getElementById("noBtn");
+    btn.style.position = "absolute";
+    btn.style.left = Math.random() * 200 + "px";
+    btn.style.top = Math.random() * 200 + "px";
+  }
+
+  function sayYes() {
+    document.body.innerHTML = `
+      <h1>Happy Valentine's Day ❤️</h1>
+      <h2>Love, Krishna 🌹</h2>
+    `;
+    confetti();
+  }
+
+  function confetti() {
+    for (let i = 0; i < 50; i++) {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerHTML = "💖";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+      document.body.appendChild(heart);
+    }
+  }
+</script>
+
+</body>
+</html>
