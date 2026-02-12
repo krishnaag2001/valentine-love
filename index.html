@@ -1,7 +1,10 @@
-<!DOCTYPE html><html>
+<!DOCTYPE html>
+<html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Krishna ❤️ Aneeshmenon</title><style>
+<title>Krishna ❤️ Aneeshmenon</title>
+
+<style>
 body{
   margin:0;
   font-family:Arial;
@@ -31,22 +34,14 @@ button{
   margin:8px;
   font-size:16px;
   cursor:pointer;
+  transition:0.2s;
 }
+
+button:hover{transform:scale(1.1);}
 
 .yes{background:#ff2e63;color:white;}
 .no{background:white;color:black;position:relative;}
-
-.heart{
-  position:absolute;
-  animation:float 6s linear infinite;
-  font-size:22px;
-  opacity:.7;
-}
-
-@keyframes float{
-  from{transform:translateY(100vh);} 
-  to{transform:translateY(-10vh);} 
-}
+.music{background:#fff0f5;color:#ff2e63;font-weight:bold;}
 
 .gallery img{
   width:90px;
@@ -55,89 +50,113 @@ button{
   border-radius:15px;
   margin:5px;
   border:2px solid white;
+  animation:fade 2s ease;
 }
 
-.timer{
-  font-size:14px;
-  margin-top:10px;
-  opacity:0.9;
+@keyframes fade{
+  from{opacity:0;transform:scale(0.8);}
+  to{opacity:1;transform:scale(1);}
 }
-</style></head><body><audio id="music" loop>
-  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3?filename=romantic-love-11725.mp3">
-</audio><div class="card">
-  <h2 id="text">Hi Aneeshmenon 💌</h2><button onclick="startMusic()">Tap to start love music 🎵</button>
 
-  <div class="gallery" id="gallery" style="display:none;">
-    <!-- Replace these with your real photos later -->
+.rose{
+  position:absolute;
+  animation:fall 6s linear infinite;
+  font-size:24px;
+}
+
+@keyframes fall{
+  from{transform:translateY(-10vh);}
+  to{transform:translateY(110vh);}
+}
+
+.hug{
+  font-size:70px;
+  animation:hug 1.2s infinite alternate;
+}
+
+@keyframes hug{
+  from{transform:scale(1);}
+  to{transform:scale(1.25);}
+}
+</style>
+</head>
+
+<body>
+
+<audio id="music"></audio>
+
+<div class="card">
+<h2 id="text">Hi Aneeshmenon 💌</h2>
+
+<button class="music" onclick="playMusic()">Play our songs 🎵</button>
+
+<div class="gallery" id="gallery" style="display:none;">
 <img src="photo1.jpg">
 <img src="photo2.jpg">
 <img src="photo3.jpg">
-  </div>  <div class="timer" id="timer" style="display:none;"></div>  <div id="buttons" style="display:none;">
-    <button class="yes" onclick="yes()">YES 💞</button>
-    <button class="no" id="no" onmouseover="moveNo()">No 🙈</button>
-  </div><button onclick="next()" id="next">Next 💘</button>
+</div>
 
-</div><script>
+<div id="buttons" style="display:none;">
+<button class="yes" onclick="yes()">YES 💞</button>
+<button class="no" id="no" onmouseover="moveNo()">No 🙈</button>
+</div>
+
+<button onclick="next()" id="next">Next 💘</button>
+</div>
+
+<script>
+const songs=[
+"https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3?filename=romantic-love-11725.mp3"
+];
+
+function playMusic(){
+const m=document.getElementById("music");
+m.src=songs[0];
+m.play();
+}
+
 const msg=[
 "Hi Aneeshmenon 💌",
-"We have known each other since 2018 🥹",
-"And our love story began in 2019 💖",
-"Every moment with you is magic ✨",
-"You are my happiest place forever ❤️",
+"We know each other since 2018 🥹",
+"Our love started in 2019 💖",
+"You are my happiest place ❤️",
 "Will you be my Valentine forever? 💍"
 ];
 
 let i=0;
 
-function startMusic(){
-  document.getElementById("music").play();
-}
-
 function next(){
-  i++;
-  text.innerText=msg[i];
+i++;
+text.innerText=msg[i];
 
-  if(i===2){
-    gallery.style.display="block";
-    timer.style.display="block";
-    startLoveTimer();
-  }
-
-  if(i===msg.length-1){
-    next.style.display="none";
-    buttons.style.display="block";
-  }
+if(i===2) gallery.style.display="block";
+if(i===msg.length-1){
+next.style.display="none";
+buttons.style.display="block";
+}
 }
 
 function moveNo(){
-  no.style.left=Math.random()*200+"px";
-  no.style.top=Math.random()*200+"px";
+no.style.left=Math.random()*200+"px";
+no.style.top=Math.random()*200+"px";
 }
 
 function yes(){
-  document.body.innerHTML="<h1>Happy Valentine's Day ❤️</h1><h2>Love, Krishna 🌹</h2>";
-  for(let i=0;i<60;i++){
-    let h=document.createElement("div");
-    h.className="heart";
-    h.innerHTML="💖";
-    h.style.left=Math.random()*100+"vw";
-    h.style.animationDuration=(3+Math.random()*3)+"s";
-    document.body.appendChild(h);
-  }
+document.body.innerHTML=
+`<div class="hug">🧸💞🧸</div>
+<h1>Happy Valentine's Day ❤️</h1>
+<h2>Love, Krishna 🌹</h2>`;
+
+for(let i=0;i<40;i++){
+let r=document.createElement("div");
+r.className="rose";
+r.innerHTML="🌹";
+r.style.left=Math.random()*100+"vw";
+r.style.animationDuration=(4+Math.random()*3)+"s";
+document.body.appendChild(r);
 }
-
-function startLoveTimer(){
-  const startDate=new Date("2019-01-01");
-
-  setInterval(()=>{
-    const now=new Date();
-    const diff=now-startDate;
-
-    const days=Math.floor(diff/(1000*60*60*24));
-    const years=Math.floor(days/365);
-
-    timer.innerText=`In love for ${years} years and ${days%365} days 💞`;
-  },1000);
 }
-</script></body>
+</script>
+
+</body>
 </html>
